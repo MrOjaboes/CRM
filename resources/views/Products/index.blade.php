@@ -31,6 +31,9 @@
                                       @endif
                                       @if($product->title == "ATHR")
                                     <a href="#">{{$product->title}}</a>
+                                      
+                                      @else
+                                    <a href="#">{{$product->title}}</a>
                                       @endif
                                   </td>
                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y')}}</td>

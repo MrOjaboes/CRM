@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Icredence Affiliate Portal</title>
+        <title>iCREDENCE Affiliate Portal</title>
         <link href="{{ asset('admins2/fonts/css/all.min.css') }}" rel="stylesheet">
           <link href="{{ asset('admins2/css/app.css') }}" rel="stylesheet">
         <!-- Styles -->

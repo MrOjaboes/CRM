@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Icredence Affiliate Portal </title>
+	<title>iCREDENCE Affiliate Portal </title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -33,7 +33,7 @@
 	
 	<div class="limiter">
 		<div class="container-login100">
-			<div class="login100-more" style="background-image: url('/front/images/bg-01.jpg');">
+			<div class="login100-more" style="background-image: url('/front/images/bg5.jpeg');">
 			<br><br><br><br><br><br><br><br><br>
 				<h1 class="text-justify text-white pt-5" style="margin-left: 10%;">Welcome to Icredence Affiliate Portal</h1>
 				<p class="text-justify text-white" style="margin-left: 15%;font-size: large;">		

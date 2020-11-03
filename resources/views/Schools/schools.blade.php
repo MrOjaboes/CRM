@@ -45,7 +45,9 @@
                     </div>
 
                     <div class="card-body">
-                     
+                     <div class="row">
+                     <div class="col-md-12">
+                   
           @if(session()->has('message'))
                 <span class="alert alert-success">{{session()->get('message')}}</span>
                  
@@ -61,11 +63,13 @@
                                     <th scope="col">Email</th>
                                     <th scope="col">Contacts</th>
                                     <th scope="col">Deals</th>
+                                    <th scope="col">Payment Status</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </thead>
                                 <tbody>
                                 @foreach($schools as $school)
+                                @foreach($payments as $payment)
                                   <tr>
                                     <td>{{$school->name}}</td>
                                     <td>{{$school->email}}</td>
@@ -77,9 +81,18 @@
                                   @endif 
                                   @if($school->completed == 1)
                                   <span class="btn btn-danger">Closed</span>                                   
-                                  @endif   
-                                    
+                                  @endif                                     
                                     </td>
+                                    
+                                    <td>                                   
+                                    @if($payment->paid == 1)
+                                    <span class="btn btn-warning">Paid</span>
+                                    @endif
+                                    @if($payment->paid == 0)
+                                    <span class="btn btn-success">Pending</span>
+                                    @endif                                    
+                                    </td>
+                                     
                                     <td>{{ \Carbon\Carbon::parse($school->created_at)->format('d/m/Y')}}</td>
                                     <td>
                                 <div class="dropdown">
@@ -106,12 +119,15 @@
                              </td>
                                   </tr>
                                   @endforeach
+                                  @endforeach
                                 </tbody>
                                 </tbody>
                             </table>
-                            <div>
-                              
-                            </div>                            
+                            <div>                              
+                            </div> 
+                            
+                            </div>
+                     </div>                           
                             </div>
                         </div>
                     </div>

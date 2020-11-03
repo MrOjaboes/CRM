@@ -13,8 +13,9 @@ class SchoolController extends Controller
    public function Index()
    {
     $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
+    $payments = Deals::where('user_id',auth()->user()->id)->get();
      $schools = School::orderBy('created_at','desc')->get();
-     return view('schools.schools',compact('schools','deals'));
+     return view('schools.schools',compact('schools','deals','payments'));
    }
 
     public function Create()
