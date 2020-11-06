@@ -136,12 +136,7 @@
       </a>
     </li> 
 
-    <li class="nav-item">
-        <a href="{{route('create-note')}}" class="nav-link">
-        <i class="fas fa-book text-white"></i>
-        <p style="color:white;"> Add Note</p>
-      </a>
-    </li> 
+     
 
     <li class="nav-item">
         <a href="{{route('products')}}" class="nav-link">
@@ -150,12 +145,7 @@
       </a>
     </li> 
 
-    <!-- <li class="nav-item">
-        <a href="{{route('schools')}}" class="nav-link">
-        <i class="fas fa-school text-white"></i>
-        <p style="color:white;">Schools</p>
-      </a>
-    </li>  -->
+    
 
  <li class="nav-item">
               <a class="dropdown-item nav-link" href="{{ route('logout') }}"
@@ -256,6 +246,8 @@
 <script src="{{ asset('admins2/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admins2/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<script src="{{ asset('admins2/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- DataTables -->
 <script src="{{ asset('admins2/plugins/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('admins2/plugins/datatables-bs4/js/dataTables.bootstrap4.js') }}"></script>

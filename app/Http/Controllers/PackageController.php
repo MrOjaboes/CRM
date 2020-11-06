@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Package;
+use \App\Product;
 class PackageController extends Controller
 {
-    
+  
+  public function p_page()
+  {
+    $products = Product::orderBy('created_at','desc')->get();
+    return view('packages.index',compact('products'));
+  }
+
    public function Index()
    {
      $packages = Package::orderBy('created_at','desc')->get();

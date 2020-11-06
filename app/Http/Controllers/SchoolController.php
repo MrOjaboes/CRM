@@ -5,6 +5,7 @@ use \App\School;
 use \App\Deals;
 use \App\Package;
 use Config;
+use Illuminate\Support\Facades\DB;
 use \App\SchoolNote;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,28 @@ class SchoolController extends Controller
    public function Index()
    {
     $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
+   $schools = School::orderBy('created_at','desc')->get();
+    //$school = School::orderBy('created_at','desc')->get('id');
     $payments = Deals::where('user_id',auth()->user()->id)->get();
-     $schools = School::orderBy('created_at','desc')->get();
+  // $school = School::find($school);
+  // $payment_school = School::orderBy('created_at','desc')->get('id');
+ 
+
+
+  //   $payments = DB::table('deals')
+  //     ->where('user_id', '=',auth()->user()->id)
+  //     ->where(function ($query) {
+  //         $query->where('school_id', '=', $payment_school->id);
+  //     })
+  //     ->get();
+    //   $pending = DB::table('deals')
+    //   ->where('school_id', '=',$schools->id)
+    //   ->where(function ($query) {
+    //       $query->where('paid', '=', 0);
+    //   })
+    //   ->get();
+
+    
      return view('schools.schools',compact('schools','deals','payments'));
    }
 
@@ -49,6 +70,7 @@ class SchoolController extends Controller
   
     public function Show(School $school)
     {
+      
       $deals = Deals::where('school_id',$school->id)->get();
       return view('schools.details',compact('school','deals'));
     }
@@ -74,6 +96,41 @@ class SchoolController extends Controller
       
        return view('schools.note',compact('school'));
    }
+
+   public function show_school_note(School $school){
+    // $school = School::find($school);
+    $school_notes = SchoolNote::where('school_id',$school->id)->orderBy('created_at','DESC')->get();
+     return view('schoolNotes.index',compact('school_notes'));
+ }
+ public function show_school_note_details(SchoolNote $school){
+    return view('schoolNotes.details',compact('school'));
+}
+
+public function edit_school_note(SchoolNote $schoolnote){
+    return view('schoolNotes.edit',compact('schoolnote'));
+}
+
+public function update_school_note(SchoolNote $schoolnote, School $school, Request $request){
+//   $request->validate([        
+//     'subject' =>'',          
+    
+// ]);
+ 
+$schoolnote->update([
+  'school_id' => $schoolnote->school_id,
+  'subject' =>$request['subject'],
+  'user_id'=>auth()->user()->id,         
+]);
+  return redirect('school/view_note/'.$schoolnote->school_id)->with('success', 'Note updated succesfully');
+    
+}
+public function Delete_note(Request $request, SchoolNote $schoolnote)
+{
+    $schoolnote->delete();
+
+    return redirect()->back()->with('success', 'Note Deleted succesfully');
+}
+
    public function store_note(\App\School $school, Request $request){
     $request->validate([
         
@@ -82,10 +139,10 @@ class SchoolController extends Controller
     ]);
     auth()->user()->school_notes()->create([
         'school_id' => $school->id,
-        'subject' =>'['.auth()->user()->username.']'.$request['subject'].' '.'Added By'.' '.'<b>'.auth()->user()->username.'</b>',
+        'subject' =>$request['subject'].' '.' By'.' '.auth()->user()->username,
         'user_id'=>auth()->user()->id,         
       ]);
-      return redirect("school/index");
+      return redirect("school/index")->with('success', 'Note Added succesfully');
       // return redirect("/admin/project/".$project->id);
  }
 
@@ -108,7 +165,7 @@ class SchoolController extends Controller
     $ten_percent = (10/100) * $amount;
     $reminant = $amount - $ten_percent;
     $final_amount = (15/100) * $reminant;
-    dd($final_amount);
+    //dd($final_amount);
   }elseif($request['package'] == Config::get('package.packages.P3')){
     $amount = $request['users'] * 2500;
     $ten_percent = (10/100) * $amount;

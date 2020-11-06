@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add School Activity</h1>
+            <h1>Note Details</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-              <li class="breadcrumb-item active">School Activity</li>
+              <li class="breadcrumb-item active">Note Details</li>
             </ol>
           </div>
         </div>
@@ -36,33 +36,24 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          @if(session()->has('message'))
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-                 
-                @endif
-                    <br><br>
-        <form action="{{route('add-school-note',$school->id)}}" method="POST" enctype="multipart/form-data">
-            @csrf
-             
+          
+        <form method="POST" action="{{route('edit-school_note',$schoolnote->id)}}">
+        @csrf
             <div class="form-group">
-                <label for="content">Activity Description</label>
-           <textarea name="subject" class="form-control" placeholder="What is the response of this school today"></textarea>
-            @error('subject')
-            <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-            </span>
-            @enderror
-            </div> 
-     
-             
-            <div class="form-group col-12">
-                <button type="submit" class="btn btn-warning pl-5 pr-5">Save Note</button>
-            </div>
-        </form>           
-            </div>            
-        </div>
-        <a href="{{route('schools')}}" type="button" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Home</a>
+                <label for="content">Note</label>
+            <textarea name="subject" id="" class="form-control" value="{{$schoolnote->subject}}">{{$schoolnote->subject}}</textarea>
             
+            </div>          
+              
+             <div class="form-group col-12">
+                <button type="submit" class="btn btn-warning pl-5 pr-5">Save Changes</button>
+            </div>
+        </form>
+           
+            </div>
+           
+        </div>
+         
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

@@ -6,119 +6,43 @@
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10">
-            <div class="row">
-            <div class="col-md-4">
-            <div class="small-box bg-default">
-         <div class="inner">
-         
-           <h3 class="text-center">&#8358; {{$deals}}</h3>
-
-           <b>Balance</b>
-         </div>        
-       </div>
-       </div>
-<div class="col-md-4">
-       <div class="small-box bg-warning">
-         <div class="inner">
-         
-           <h3 class="text-center">{{$schools->where('completed',0)->count()}}</h3>
-
-           <b>Open Deals</b>
-         </div>        
-       </div>
-</div>
-<div class="col-md-4">
-       <div class="small-box bg-danger">
-         <div class="inner">
-         
-           <h3 class="text-center">{{$schools->where('completed',1)->count()}}</h3>
-
-           <b>Closed Deals</b>
-         </div>        
-       </div>
-       </div>
-       </div>
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h4 class="card-title">Recent Added Schools</h4>
+                        <h4 class="card-title">Recent Added Products</h4>
             
                     </div>
 
-                    <div class="card-body">
-                     <div class="row">
-                     <div class="col-md-12">
-                   
-          @if(session()->has('message'))
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-                 
-                @endif
                      
-                    <h6 class="card-title"><a class="btn btn-secondary" href="{{route('create-school')}}"><i class="fas fa-plus"></i> New School</a></h6>
-                        <br><br>
+                     <br>
                         <div class="transaction-table">
-                            <div class="table-responsive" style="height:300px;overflow-y:scroll;">
+                            <div class="table-responsive">
                               <table class="table mb-0 table-responsive-sm">
                                 <thead>                                     
-                                    <th scope="col">Names</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Contacts</th>
-                                    <th scope="col">Deals</th>                                    
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Date Added</th>
+                                     
                                 </thead>
                                 <tbody>
-                                @foreach($schools as $school)
-                                 
+                                @foreach($products as $product)
                                   <tr>
-                                    <td><a href="{{route('school-view-school_note', $school->id)}}">{{$school->name}}</a></td>
-                                    <td>{{$school->email}}</td>
-                                    <td>{{$school->phone}}</td>
                                     <td>
-                                    
-                                    @if($school->completed == 0)
-                                  <span class="btn btn-success">Open</span>                                   
-                                  @endif 
-                                  @if($school->completed == 1)
-                                  <span class="btn btn-danger">Closed</span>                                   
-                                  @endif                                     
-                                    </td>
-                                    
-                                     
-                                     
-                                    <td>{{ \Carbon\Carbon::parse($school->created_at)->format('d/m/Y')}}</td>
-                                    <td>
-                                <div class="dropdown">
-                                    <button style="background-color:#3A3A80;color:white;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Actions
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    @if($school->completed == 1)
-                                      <a class="dropdown-item btn btn-info" title="School Details" href="{{route('view-school', $school->id)}}">Details</a>
-                                   @endif
-                                      @if($school->completed == 0)
-                                      <a class="dropdown-item btn btn-danger" title="Close Deal" href="{{route('close-deal', $school->id)}}">Close Deal</a>
-                                    <a class="dropdown-item btn btn-info" title="Add Note" href="{{route('add-school-note', $school->id)}}">Add Note</a>
-                                    <a class="dropdown-item" title="Edit School Details" href="{{route('edit-school', $school->id)}}">Edit School</a>
-                                    <form action="{{route('delete-school', $school->id)}}" method="POST">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-default">Delete</button>
-                                    </form>
-                                    @endif
-                                     
-                                    </div>
-                                  </div>
-                             </td>
-                                  </tr>                                  
+                                      @if($product->title == "SchoolRevo")
+                                    <a href="{{route('packages')}}">{{$product->title}}</a>
+                                      @endif
+                                      @if($product->title == "ATHR")
+                                    <a href="#">{{$product->title}}</a>
+                                      
+                                      @endif
+                                  </td>
+                                    <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y')}}</td>
+                                      
+                                  </tr>
                                   @endforeach
                                 </tbody>
-                                </tbody>
                             </table>
-                            <div>                              
-                            </div> 
-
-                            </div>
-                     </div>                           
+                            <div>
+                              
+                            </div>                            
                             </div>
                         </div>
                     </div>
@@ -127,7 +51,7 @@
              
         </div>
     </div>
-</div>
+    </div>
 <!-- jQuery -->
 <script src="{{ asset('admins2/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->

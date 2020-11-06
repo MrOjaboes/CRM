@@ -117,7 +117,7 @@
      
 
     <li class="nav-item">
-        <a href="{{route('packages')}}" class="nav-link">
+        <a href="{{route('products.packages')}}" class="nav-link">
         <i class="fas fa-box-open text-white"></i>        
         <p style="color:white;"> Packages</p>
       </a>
@@ -229,6 +229,7 @@
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  
 <script src="{{ asset('admins2/plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('admins2/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('admins2/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- DataTables -->

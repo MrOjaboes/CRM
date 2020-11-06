@@ -53,7 +53,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('school/edit/{school}', 'SchoolController@update')->name('update-school');
     Route::DELETE('school/delete/{school}', 'SchoolController@delete')->name('delete-school');
   
-    
+     
+    //School Notes
+    Route::get('school/view_note/{school}', 'SchoolController@show_school_note')->name('school-view-school_note');
+    Route::get('school/view_note_details/{school}', 'SchoolController@show_school_note_details')->name('view-school_note');
+    Route::get('school/note/edit/{schoolnote}', 'SchoolController@edit_school_note')->name('edit-school_note');
+    Route::POST('school/note/edit/{schoolnote}', 'SchoolController@update_school_note')->name('edit-school_note');
+    Route::DELETE('school_note/delete/{schoolnote}', 'SchoolController@delete_note')->name('delete-school-note');
+  
     //Note Making
     Route::get('note/create', 'NoteController@create')->name('create-note');
     Route::post('note/create', 'NoteController@store')->name('create-note');
@@ -78,6 +85,7 @@ Route::PUT('affiliate/payment/{school}', 'AdminController@payment')->name('pay-a
 Route::get('school/details/{school}', 'AdminController@show')->name('school-details')->middleware('is_admin');
 Route::get('school/view/note/{school}', 'SchoolController@view_note')->name('view-school-note')->middleware('is_admin');
 Route::get('package/index', 'PackageController@index')->name('packages')->middleware('is_admin');
+Route::get('products/packages/index', 'PackageController@p_page')->name('products.packages')->middleware('is_admin');
 Route::get('schools/index', 'AdminController@schools')->name('admin.schools')->middleware('is_admin');
 Route::get('package/create', 'PackageController@create')->name('create-package')->middleware('is_admin');
 Route::post('package/create', 'PackageController@store')->name('create-package')->middleware('is_admin');
