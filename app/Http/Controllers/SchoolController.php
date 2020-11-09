@@ -7,6 +7,7 @@ use \App\Package;
 use Config;
 use Illuminate\Support\Facades\DB;
 use \App\SchoolNote;
+use \App\Comment;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
@@ -15,27 +16,9 @@ class SchoolController extends Controller
    {
     $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
    $schools = School::orderBy('created_at','desc')->get();
-    //$school = School::orderBy('created_at','desc')->get('id');
-    $payments = Deals::where('user_id',auth()->user()->id)->get();
-  // $school = School::find($school);
-  // $payment_school = School::orderBy('created_at','desc')->get('id');
- 
-
-
-  //   $payments = DB::table('deals')
-  //     ->where('user_id', '=',auth()->user()->id)
-  //     ->where(function ($query) {
-  //         $query->where('school_id', '=', $payment_school->id);
-  //     })
-  //     ->get();
-    //   $pending = DB::table('deals')
-    //   ->where('school_id', '=',$schools->id)
-    //   ->where(function ($query) {
-    //       $query->where('paid', '=', 0);
-    //   })
-    //   ->get();
-
-    
+  //  $affiliates = User::all()->count();
+  //  $products = Product::all()->count();
+    $payments = Deals::where('user_id',auth()->user()->id)->get();      
      return view('schools.schools',compact('schools','deals','payments'));
    }
 
@@ -106,6 +89,12 @@ class SchoolController extends Controller
     return view('schoolNotes.details',compact('school'));
 }
 
+public function admin_view_note(SchoolNote $school, School $school_involved){
+  //$school_involved = School::find($school_involved);
+  $comments = Comment::where('school_id',$school->school_id)->get();
+  return view('schoolNotes.admin_details',compact('school','comments'));
+}
+
 public function edit_school_note(SchoolNote $schoolnote){
     return view('schoolNotes.edit',compact('schoolnote'));
 }
@@ -137,11 +126,18 @@ public function Delete_note(Request $request, SchoolNote $schoolnote)
         'subject' =>'required',            
         
     ]);
-    auth()->user()->school_notes()->create([
+    $s_note = auth()->user()->school_notes()->create([
         'school_id' => $school->id,
         'subject' =>$request['subject'].' '.' By'.' '.auth()->user()->username,
         'user_id'=>auth()->user()->id,         
       ]);
+      if($s_note){
+        auth()->user()->allnotes()->create([
+          'school_id' => $school->id,
+          'content' =>$request['subject'].' '.' By'.' '.auth()->user()->username,
+          'user_id'=>auth()->user()->id,         
+        ]);
+      }
       return redirect("school/index")->with('success', 'Note Added succesfully');
       // return redirect("/admin/project/".$project->id);
  }
@@ -193,10 +189,10 @@ public function Delete_note(Request $request, SchoolNote $schoolnote)
       'user_id'=>auth()->user()->id,         
     ]);  
     if($deals){
-      auth()->user()->wallet()->create([        
-        'balance' =>$final_amount,         
-        'user_id'=>auth()->user()->id,         
-      ]);  
+    //   auth()->user()->product_deals()->create([        
+    //     'balance' =>$final_amount,         
+    //     'user_id'=>auth()->user()->id,         
+    //   ]);  
       $school->update([
             'completed' => true
         ]);

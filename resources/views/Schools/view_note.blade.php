@@ -19,13 +19,15 @@
                               <table class="table mb-0 table-responsive-sm">
                                 <thead>                                     
                                     <th scope="col">Activity</th>
+                                    <th scope="col"></th>
                                     <th scope="col">Added By</th>
                                     <th scope="col">Date Added</th>                                     
                                 </thead>
                                 <tbody>
                                  @foreach($school_notes as $note)
                                   <tr>
-                                    <td>{{$note->subject}}</td>
+                                    <td><a href="{{route('admin-view-school_note', $note->id)}}">{{substr($note->subject ,0,40)}}.....</a></td>
+                                    <td><a href="{{route('create-comment', $note->id)}}" title="comment on this?"><i class="fas fa-comment"></i></a></td>
                                     <td>
                                     @php
                         $name = $note->user_id;
@@ -46,11 +48,15 @@
                             </table>
                             <div>
                               
-                            </div>                            
+                            </div>  
+                                                      
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                <a href="{{route('admin.schools')}}" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Home</a>
+            
             </div>
              
         </div>

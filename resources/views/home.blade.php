@@ -2,21 +2,27 @@
 @section('content')
 <div class="homepage mb-80">
     <div class="container">
-         
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
-                <div class="card">
-                <div class="card-body">
-                <div class="row">
-     
-     <div class="col-lg-3 col-6">
-       <!-- small box -->
-       <div class="small-box bg-info">
+    <div class="row">   
+    <div class="col-lg-6 col-6">
+    <div class="small-box" style="background-color:#A1E84F;">
          <div class="inner">
-         <h3 class="text-center">{{$products->count()}}</h3>
+         <h3 class="text-center">{{$affiliates}} </h3>
 
-           <p>Products Added</p>
+           <h6>Registered Affiliates</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+     <div class="col-lg-6 col-6">
+       <!-- small box -->
+       <div class="small-box" style="background-color:#002343;">
+         <div class="inner">
+         <h3 class="text-center text-white">{{$products}}</h3>
+
+           <h6 class="text-white">Products Added</h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -24,67 +30,103 @@
          
        </div>
      </div>
-     <!-- ./col -->
-     <div class="col-lg-3 col-6">
-       <!-- small box -->
-       <div class="small-box bg-success">
-         <div class="inner">              
-           <h3 class="text-center">
-           
-           &#8358; {{$deals}}
-           
-           </h3>
+     </div>
+         
+        <h2 class="text-center" style="color:#cccccc;">SchoolRevo Details</h2>
+     <div class="row">   
+     <div class="col-lg-3 col-3">
+     <div class="small-box bg-warning">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->count()}}</h3>
 
-           <p>Total Amount</p>
+           <h6>Schools Involved</h6>
          </div>
          <div class="icon">
-           <i class="ion ion-stats-bars"></i>
+           <i class="ion ion-bag"></i>
          </div>
-          
+         
        </div>
+     
      </div>
-     <!-- ./col -->
-     <div class="col-lg-3 col-6">
-       <!-- small box -->
-       <div class="small-box bg-warning">
-         <div class="inner">            
-           <h3 class="text-center">{{$schools->where('completed',0)->count()}}</h3>
 
-           <p>Open Deals</p>
+     <div class="col-lg-3 col-3">
+     <div class="small-box bg-info">
+         <div class="inner">
+         <h3 class="text-center"> &#8358; {{$deals}}</h3>
+
+           <h6>Wallet Balance</h6>
          </div>
          <div class="icon">
-           <i class="ion ion-person-add"></i>
+           <i class="ion ion-bag"></i>
          </div>
-          
+         
        </div>
+     
      </div>
-     <!-- ./col -->
-     <div class="col-lg-3 col-6">
+
+    <div class="col-lg-3 col-3">
+    <div class="small-box" style="background-color:#33E899;">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
+
+           <h6>Open Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+     <div class="col-lg-3 col-3">
        <!-- small box -->
        <div class="small-box bg-danger">
          <div class="inner">
-         
-           <h3 class="text-center">{{$schools->where('completed',1)->count()}}</h3>
+         <h3 class="text-center">{{$schools->where('completed', 1)->count()}}</h3>
 
-           <p>Closed Deals</p>
+           <h6>Closed Deals</h6>
          </div>
          <div class="icon">
-           <i class="ion ion-pie-graph"></i>
+           <i class="ion ion-bag"></i>
          </div>
-          
+         
        </div>
      </div>
-     <!-- ./col -->
-   </div>
+     </div>
+         
+     <h2 class="text-center" style="color:#cccccc;">ATHR Details</h2>
+     <div class="row">   
 
-   
-      
-      
-     <!-- /.col (RIGHT) -->
-   </div>
-   <!-- /.row -->
- </div>
-                         
+    <div class="col-lg-6 col-6">
+    <div class="small-box" style="background-color:#33E899;">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
+
+           <h6>Open Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+     <div class="col-lg-6 col-6">
+       <!-- small box -->
+       <div class="small-box bg-danger">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->where('completed', 1)->count()}}</h3>
+
+           <h6>Closed Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     </div>
+         
+
+                            
                     </div>
                 </div>
             </div>

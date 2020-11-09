@@ -1,4 +1,4 @@
-@extends('layouts.users')
+@extends('layouts.header')
 @section('content')
 <div class="homepage mb-80">
     <div class="container">
@@ -8,68 +8,60 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h4 class="card-title">Added Companies</h4>
+                        <h4 class="card-title">Recent Added Notes</h4>
             
                     </div>
 
                     <div class="card-body">
-          @if(session()->has('message'))
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-                 
-                @endif
-                    <br><br>
-                    <h5 class="card-title"><a class="btn btn-secondary" href="{{route('create-package')}}"><i class="fas fa-plus"></i> New </a></h5>
-                        <br><br>
+             
                         <div class="transaction-table">
                             <div class="table-responsive">
-                              <table class="table mb-0 table-responsive-sm" style="height:400px;overflow-y:scroll;">
+                              <table class="table mb-0 table-responsive-sm">
                                 <thead>                                     
-                                    <th scope="col">Name</th>                                    
-                                    <th scope="col">Date Added</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Activity</th>
+                                    <th scope="col"></th>
+                                    <th scope="col">Added By</th>
+                                    <th scope="col">Date Added</th>                                     
                                 </thead>
                                 <tbody>
-                                @foreach($athrs as $athr)
+                                 @foreach($school_notes as $note)
                                   <tr>
-                                     
-                                    <td>{{ \Carbon\Carbon::parse($package->created_at)->format('d/m/Y')}}</td>
+                                    <td><a href="{{route('admin-view-school_note', $note->id)}}">{{substr($note->content ,0,40)}}.....</a></td>
+                                    <td><a href="{{route('create-comment', $note->id)}}" title="comment on this?"><i class="fas fa-comment"></i></a></td>
                                     <td>
-                                <div class="dropdown">
-                                    <button style="background-color:#3A3A80;color:white;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Actions
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      @if(Auth::check() AND Auth::user()->user_type == 1)
+                                    @php
+                        $name = $note->user_id;
+                      @endphp
+
+                        
+                          {{App\Http\Controllers\UserController::GetUserById($name)}}
+                        
+                         
+                            </td>
+                                     
+                                    <td>{{ \Carbon\Carbon::parse($note->created_at)->format('d/m/Y')}}</td>
                                     
-                                    <a class="dropdown-item" href="{{route('edit-package', $package->id)}}">Edit Package</a>
-                                    <form action="{{route('delete-package', $package->id)}}" method="POST">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-default">Delete</button>
-                                    </form>
-                                    @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1)
-                                      
-                                      @endif
-                                    </div>
-                                  </div>
-                             </td>
-                                  </tr>
-                                  @endforeach
+                                  </tr>  
+                                  @endforeach                                
+                                </tbody>
                                 </tbody>
                             </table>
                             <div>
                               
-                            </div>                            
+                            </div>  
+                                                      
                             </div>
                         </div>
+                        
                     </div>
                 </div>
+                <a href="{{route('admin.schools')}}" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Home</a>
+            
             </div>
              
         </div>
     </div>
-    </div>
+</div>
 <!-- jQuery -->
 <script src="{{ asset('admins2/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->

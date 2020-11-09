@@ -27,18 +27,21 @@ Route::group(['middleware' => ['auth']], function () {
 
 
     Route::get('/home', 'HomeController@index')->name('home');
- //Product Creation
-    Route::get('product/index', 'ProductController@index')->name('products');
-    Route::get('products/index', 'ProductController@products')->name('admin.products')->middleware('is_admin');
-    Route::get('product/create', 'ProductController@create')->name('create-product')->middleware('is_admin');
-    Route::post('product/create', 'ProductController@store')->name('create-product')->middleware('is_admin');
-    Route::get('product/view/{product}', 'ProductController@show')->name('view-product')->middleware('is_admin');
-    Route::get('product/edit/{product}', 'ProductController@edit')->name('edit-product')->middleware('is_admin');
-    Route::post('product/edit/{product}', 'ProductController@update')->name('update-product')->middleware('is_admin');
-    Route::DELETE('product/delete/{product}', 'ProductController@delete')->name('delete-product')->middleware('is_admin');
+ 
+
+    //Athr Creation
+    Route::get('athr/index', 'AthrController@index')->name('athrs');
+    Route::get('athrs/index', 'AthrController@athrs')->name('admin.athrs')->middleware('is_admin');
+    Route::get('athr/create', 'AthrController@create')->name('create-athr');
+    Route::post('athr/create', 'AthrtController@store')->name('create-athr');
+    Route::get('athr/view/{athr}', 'AthrController@show')->name('view-athr');
+    Route::get('athr/edit/{athr}', 'AthrController@edit')->name('edit-athr');
+    Route::post('athr/edit/{athr}', 'AthrController@update')->name('update-athr');
+    Route::DELETE('athr/delete/{athr}', 'AthrController@delete')->name('delete-athr');
 
 
-    //School Creating
+
+    //School Creation
     Route::get('school/index', 'SchoolController@index')->name('schools');
     Route::get('school/create', 'SchoolController@create')->name('create-school');
     Route::post('school/create', 'SchoolController@store')->name('create-school');
@@ -65,6 +68,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('note/create', 'NoteController@create')->name('create-note');
     Route::post('note/create', 'NoteController@store')->name('create-note');
     Route::get('note/view/{note}', 'NoteController@show')->name('view-note');
+    
+    Route::get('admin/affiliate/notes', 'AdminController@affiliate_notes')->name('affiliate.notes')->middleware('is_admin');
+    Route::get('admin/allnote/view/{id}', 'AdminController@show_allnote')->name('admin-view-allnote')->middleware('is_admin');
     Route::get('admin/note/view/{note}', 'NoteController@note_details')->name('admin-view-note')->middleware('is_admin');
     Route::get('note/edit/{note}', 'NoteController@edit')->name('edit-note');
     Route::post('note/edit/{note}', 'NoteController@update')->name('update-note');
@@ -80,10 +86,28 @@ Route::group(['middleware' => ['auth']], function () {
 
     //admin section
 
+    //comments section
+    Route::get('admin/create_comment/{schoolnote}', 'CommentController@create')->name('create-comment')->middleware('is_admin');
+    Route::POST('admin/create_comment/{schoolnote}', 'CommentController@store')->name('create-comment')->middleware('is_admin');
+
+//Product Creation
+Route::get('product/index', 'ProductController@index')->name('products');
+Route::get('products/index', 'ProductController@products')->name('admin.products')->middleware('is_admin');
+Route::get('product/create', 'ProductController@create')->name('create-product')->middleware('is_admin');
+Route::post('product/create', 'ProductController@store')->name('create-product')->middleware('is_admin');
+Route::get('product/view/{product}', 'ProductController@show')->name('view-product')->middleware('is_admin');
+Route::get('product/edit/{product}', 'ProductController@edit')->name('edit-product')->middleware('is_admin');
+Route::post('product/edit/{product}', 'ProductController@update')->name('update-product')->middleware('is_admin');
+Route::DELETE('product/delete/{product}', 'ProductController@delete')->name('delete-product')->middleware('is_admin');
+
+
+
 //Package Creation
+Route::PUT('affiliate/note/{note}', 'AdminController@mark_note')->name('mark-note')->middleware('is_admin');
 Route::PUT('affiliate/payment/{school}', 'AdminController@payment')->name('pay-affiliate')->middleware('is_admin');
 Route::get('school/details/{school}', 'AdminController@show')->name('school-details')->middleware('is_admin');
 Route::get('school/view/note/{school}', 'SchoolController@view_note')->name('view-school-note')->middleware('is_admin');
+Route::get('school/view/note_details/{school}', 'SchoolController@admin_view_note')->name('admin-view-school_note')->middleware('is_admin');
 Route::get('package/index', 'PackageController@index')->name('packages')->middleware('is_admin');
 Route::get('products/packages/index', 'PackageController@p_page')->name('products.packages')->middleware('is_admin');
 Route::get('schools/index', 'AdminController@schools')->name('admin.schools')->middleware('is_admin');
@@ -97,7 +121,7 @@ Route::DELETE('package/delete/{package}', 'PackageController@delete')->name('del
 
     Route::get('admin', 'AdminController@index')->name('admin')->middleware('is_admin');
     Route::get('users', 'UserController@index')->name('users')->middleware('is_admin');
-    Route::get('users/{id}', 'UserController@editfund')->name('add-deduct')->middleware('is_admin');
+    Route::get('user/products/{user}', 'UserController@user_products')->name('user-product')->middleware('is_admin');
     
     Route::post('user/mail/{profile}', 'profileController@send_user_email')->name('mail-user')->middleware('is_admin');
     Route::get('user/mail/{profile}', 'profileController@sendMail')->name('mail-user')->middleware('is_admin');

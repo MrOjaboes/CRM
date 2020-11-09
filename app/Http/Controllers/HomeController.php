@@ -6,6 +6,7 @@ use App\Saving;
 use App\School;
 use App\Note;
 use App\Product;
+use App\User;
 use App\Deals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,10 +33,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $affiliates = User::all()->count();   
         $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
         $schools = School::where('user_id',auth()->user()->id)->orderBy('created_at','DESC')->get();
-        $products = Product::where('user_id',auth()->user()->id)->orderBy('created_at','DESC')->get();
-        return view('home', compact('schools','deals','products'));
+        $products = Product::all()->count();
+        return view('home', compact('schools','deals','products','affiliates'));
     }
 
     public function chart()

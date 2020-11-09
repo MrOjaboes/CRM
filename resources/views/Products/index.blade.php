@@ -26,14 +26,11 @@
                                 @foreach($products as $product)
                                   <tr>
                                     <td>
-                                      @if($product->title == "SchoolRevo")
+                                      @if($product->id == 1)
                                     <a href="{{route('schools')}}">{{$product->title}}</a>
                                       @endif
-                                      @if($product->title == "ATHR")
-                                    <a href="#">{{$product->title}}</a>
-                                      
-                                      @else
-                                    <a href="#">{{$product->title}}</a>
+                                      @if($product->id == 3)
+                                    <a href="{{route('athrs')}}">{{$product->title}}</a>                                      
                                       @endif
                                   </td>
                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y')}}</td>

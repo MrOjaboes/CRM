@@ -1,8 +1,7 @@
 @extends('layouts.header')
 @section('content')
 <div class="homepage mb-80">
-    <div class="container">
-         
+    <div class="container">         
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10">
@@ -64,8 +63,12 @@
                               
                             </div>                            
                             </div>
-                        </div>
+                            
+                        </div>  
+                        <a href="{{route('products.packages')}}" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Back</a>
+                                        
                     </div>
+                     
                 </div>
             </div>
              

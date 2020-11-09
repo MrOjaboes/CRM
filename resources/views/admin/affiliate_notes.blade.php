@@ -1,61 +1,74 @@
-@extends('layouts.users')
+@extends('layouts.header')
 @section('content')
 <div class="homepage mb-80">
-    <div class="container">
-         
+    <div class="container">       
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h4 class="card-title">Added Companies</h4>
+                        <h4 class="card-title">Recent notes From Affiliates <span class="badge badge-warning">{{$notes->where('status' == 0)->count()}}</span></h4>
             
                     </div>
 
                     <div class="card-body">
+                     
           @if(session()->has('message'))
                 <span class="alert alert-success">{{session()->get('message')}}</span>
                  
                 @endif
                     <br><br>
-                    <h5 class="card-title"><a class="btn btn-secondary" href="{{route('create-package')}}"><i class="fas fa-plus"></i> New </a></h5>
-                        <br><br>
-                        <div class="transaction-table">
-                            <div class="table-responsive">
-                              <table class="table mb-0 table-responsive-sm" style="height:400px;overflow-y:scroll;">
+                     
+                         <div class="transaction-table">
+                            <div class="table-responsive" style="height:300px;overflow-y:scroll;">
+                              <table class="table mb-0 table-responsive-sm">
                                 <thead>                                     
-                                    <th scope="col">Name</th>                                    
-                                    <th scope="col">Date Added</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Activity</th>
+                                    <th scope="col">Author</th>                                                                         
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Read? </th>
+                                     <th scope="col"></th>
                                 </thead>
                                 <tbody>
-                                @foreach($athrs as $athr)
+                                @foreach($notes as $note)
                                   <tr>
-                                     
-                                    <td>{{ \Carbon\Carbon::parse($package->created_at)->format('d/m/Y')}}</td>
+                                    <td>[<b>
+                                    @php
+                        $name = $note->user_id;
+                      @endphp
+                                    {{App\Http\Controllers\UserController::GetUserById($name)}}</b>] {{ substr ($note->content ,0,40)}}.....</td>
                                     <td>
-                                <div class="dropdown">
-                                    <button style="background-color:#3A3A80;color:white;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Actions
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      @if(Auth::check() AND Auth::user()->user_type == 1)
-                                    
-                                    <a class="dropdown-item" href="{{route('edit-package', $package->id)}}">Edit Package</a>
-                                    <form action="{{route('delete-package', $package->id)}}" method="POST">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button type="submit" class="btn btn-default">Delete</button>
-                                    </form>
-                                    @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1)
-                                      
-                                      @endif
-                                    </div>
-                                  </div>
-                             </td>
+                                    @php
+                        $name = $note->user_id;
+                      @endphp
+
+                        
+                          {{App\Http\Controllers\UserController::GetUserById($name)}}
+                        
+                                    </td>                                                                         
+                                    <td>{{ \Carbon\Carbon::parse($note->created_at)->format('d/m/Y')}}</td>
+                                   <td>
+                                   @if($note->status == 0)
+                                   <span onclick="event.preventDefault();document.getElementById('form-complete-{{$note->id}}').submit()"
+                     title="complete" class="fas fa-check text-gray cursor-pointer float-left"></span>
+                    <form style="display: none;" action="{{route('mark-note',$note->id)}}" id="{{'form-complete-'.$note->id}}" method="post">
+                        @csrf
+                        @method('put')
+                    </form>
+                    @else
+                    <span class="btn btn-warning">Viewed</span>
+                    @endif
+                                   </td>
+                                   <td>
+                                   <a class="btn btn-info btn-sm" title="note details" href="{{route('admin-view-allnote',$note->id)}}">
+                               <i class="fas fa-folder">
+                              </i>
+                              
+                          </a> 
+                                   </td>
                                   </tr>
                                   @endforeach
+                                </tbody>
                                 </tbody>
                             </table>
                             <div>
@@ -69,7 +82,7 @@
              
         </div>
     </div>
-    </div>
+</div>
 <!-- jQuery -->
 <script src="{{ asset('admins2/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->

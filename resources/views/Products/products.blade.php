@@ -28,15 +28,13 @@
                                 @foreach($products as $product)
                                   <tr>
                                     <td>
-                                      @if($product->title == "SchoolRevo")
+                                      @if($product->id == 1)
                                     <a href="{{route('admin.schools')}}">{{$product->title}}</a>
                                       @endif
-                                      @if($product->title == "ATHR")
+                                      @if($product->id == 3)
                                     <a href="#">{{$product->title}}</a>
-                                       
-                                      @else
-                                    <a href="#">{{$product->title}}</a>
-                                      @endif
+                                    @endif                                     
+                                      
                                   </td>
                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y')}}</td>
                                     <td>
@@ -54,9 +52,7 @@
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
                                     @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1)
-                                      
-                                      @endif
+                                    
                                     </div>
                                   </div>
                              </td>

@@ -1,4 +1,4 @@
-@extends('layouts.users')
+@extends('layouts.header')
 @section('content')
 <div class="homepage mb-80">
     <div class="container">
@@ -44,6 +44,7 @@
                               
                             </div>                            
                             </div>
+                            
                         </div>
                     </div>
                 </div>

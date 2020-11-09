@@ -36,7 +36,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-        <form action="{{route('update-user', $profile->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="media align-items-center mb-3">
@@ -139,7 +139,7 @@
              
 
             <div class="form-group col-12">
-              <a href="{{route('admin')}}" type="button" class="btn btn-success">Home</a>
+              <a href="{{route('users')}}" type="button" class="btn btn-success">Users</a>
                 <!-- <button type="submit" class="btn btn-success pl-5 pr-5">Update</button> -->
             </div>
         </form>

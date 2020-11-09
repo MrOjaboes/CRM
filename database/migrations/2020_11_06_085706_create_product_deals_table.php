@@ -16,9 +16,10 @@ class CreateProductDealsTable extends Migration
         Schema::create('product_deals', function (Blueprint $table) {
             $table->id();
             $table->double('balance',18,2)->nullable();
-            $table->boolean('paid')->default(false);  
+            $table->boolean('completed')->default(false);  
             $table->integer('user_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
-            $table->integer('school_id')->unsigned()->references('id')->on('schools')->onDelete('cascade');            
+            $table->integer('school_id')->unsigned()->references('id')->on('schools')->onDelete('cascade')->nullable(); 
+            $table->integer('athr_id')->unsigned()->references('id')->on('athrs')->onDelete('cascade')->nullable();                       
             $table->timestamps();
         });
     }

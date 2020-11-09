@@ -104,7 +104,7 @@
 
         <li class="nav-item">
         <a href="{{route('profile', Auth::user()->profile)}}" class="nav-link">
-        <i class="fas fa-file text-white"></i>
+        <i class="fab fa-product-hunt text-white"></i>
         <p style="color:white;"> Profile</p>
       </a>
     </li> 
@@ -127,6 +127,12 @@
         <a href="{{route('admin.products')}}" class="nav-link">
         <i class="fab fa-product-hunt text-white"></i>
         <p style="color:white;"> Products</p>
+      </a>
+    </li>  
+    <li class="nav-item">
+        <a href="{{route('affiliate.notes')}}" class="nav-link">
+        <i class="fas fa-file text-white"></i>
+        <p style="color:white;"> Notes</p>
       </a>
     </li>       
                                    

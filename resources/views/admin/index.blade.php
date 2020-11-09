@@ -2,69 +2,121 @@
 @section('content')
 <div class="homepage mb-80">
     <div class="container">
+    <div class="row">
+    <div class="col-md-12">
+    <h4 class="card-title text-right"><a href="{{route('affiliate.notes')}}">Notes From Affiliates</a>  <b class="btn btn-sm btn-success">{{$notes->where('status',0)->count()}}</b></h4> <br><br>
+    </div>
+    </div>
+    <div class="row">   
+    <div class="col-lg-6 col-6">
+    <div class="small-box" style="background-color:#A1E84F;">
+         <div class="inner">
+         <h3 class="text-center">{{$affiliates}}</h3>
+
+           <h6>Registered Affiliates</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
          
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="card-header border-0 pb-0">
-                        <h4 class="card-title">Recent notes From Affiliates <span class="badge badge-warning">{{$notes->count()}}</span></h4>
-            
-                    </div>
+       </div>
+    </div>
+     <div class="col-lg-6 col-6">
+       <!-- small box -->
+       <div class="small-box" style="background-color:#002343;">
+         <div class="inner">
+         <h3 class="text-center text-white">{{$products}}</h3>
 
-                    <div class="card-body">
-                     
-          @if(session()->has('message'))
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-                 
-                @endif
-                    <br><br>
-                     
-                         <div class="transaction-table">
-                            <div class="table-responsive" style="height:300px;overflow-y:scroll;">
-                              <table class="table mb-0 table-responsive-sm">
-                                <thead>                                     
-                                    <th scope="col">Activity</th>
-                                    <th scope="col">Author</th>                                                                         
-                                    <th scope="col">Date</th>
-                                    <th scope="col"> </th>
-                                     
-                                </thead>
-                                <tbody>
-                                @foreach($notes as $note)
-                                  <tr>
-                                    <td>[<b>
-                                    @php
-                        $name = $note->user_id;
-                      @endphp
-                                    {{App\Http\Controllers\UserController::GetUserById($name)}}</b>] {{ substr ($note->content ,0,40)}}.....</td>
-                                    <td>
-                                    @php
-                        $name = $note->user_id;
-                      @endphp
+           <h6 class="text-white">Products Added</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     </div>
+         
+        <h2 class="text-center" style="color:#cccccc;">SchoolRevo Details</h2>
+     <div class="row">   
+     <div class="col-lg-4 col-4">
+     <div class="small-box bg-warning">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->count()}}</h3>
 
-                        
-                          {{App\Http\Controllers\UserController::GetUserById($name)}}
-                        
-                                    </td>                                                                         
-                                    <td>{{ \Carbon\Carbon::parse($note->created_at)->format('d/m/Y')}}</td>
-                                   <td>
-                                   <a class="btn btn-info btn-sm" title="note details" href="{{route('admin-view-note',$note->id)}}">
-                               <i class="fas fa-folder">
-                              </i>
-                              
-                          </a> 
-                                   </td>
-                                  </tr>
-                                  @endforeach
-                                </tbody>
-                                </tbody>
-                            </table>
-                            <div>
-                              
-                            </div>                            
-                            </div>
-                        </div>
+           <h6>Schools Involved</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     
+     </div>
+
+    <div class="col-lg-4 col-4">
+    <div class="small-box bg-danger">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->where('completed', 1)->count()}}</h3>
+
+           <h6>Closed Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+     <div class="col-lg-4 col-4">
+       <!-- small box -->
+       <div class="small-box" style="background-color:#33E899;">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->where('completed', 0)->count()}}</h3>
+
+           <h6>Open Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     </div>
+         
+     <h2 class="text-center" style="color:#cccccc;">ATHR Details</h2>
+     <div class="row">   
+
+    <div class="col-lg-6 col-6">
+    <div class="small-box" style="background-color:#33E899;">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->where('completed', 0)->count()}}</h3>
+
+           <h6>Open Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+     <div class="col-lg-6 col-6">
+       <!-- small box -->
+       <div class="small-box bg-danger">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->where('completed', 1)->count()}}</h3>
+
+           <h6>Closed Deals</h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     </div>
+         
+
+                            
                     </div>
                 </div>
             </div>

@@ -54,7 +54,7 @@
                       <tbody>
                         <tr>
                           <td>{{$user->profile->full_name ?? '-'}}</td>                           
-                            <td>{{$user->username ?? '-'}}</td>                             
+                            <td><a href="{{route('user-product',$user->id)}}">{{$user->username ?? '-'}}</a></td>                             
                              <td>{{$user->email ?? '-'}}</td>                       
                               
                              <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d/m/Y')}}</td>

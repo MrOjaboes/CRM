@@ -53,6 +53,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Deals::class);
     }
+    public function allnotes()
+    {
+        return $this->hasMany(AllNote::class);
+    }
+    public function product_deals()
+    {
+        return $this->hasMany(ProductDeals::class);
+    }
+
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function school_notes()
     {

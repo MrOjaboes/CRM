@@ -9,7 +9,8 @@ use App\Saving;
 use App\Transaction;
 use App\User;
 use App\Note;
-use App\Wallet;
+use App\AllNote;
+use App\School;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -31,10 +32,11 @@ class UserController extends Controller
         return view('admin.users', compact('users'));
     }
 
-    public function editfund($id)
+    public function user_products($user)
     {
-        $user = User::findOrFail($id);
-        return view('admin.users.fund-deduct', compact('user'));
+        $user = User::findOrFail($user);
+        $schools = School::where('user_id',$user->id)->get();
+        return view('admin.users.products', compact('schools'));
     }
 
     public function viewNote($id)

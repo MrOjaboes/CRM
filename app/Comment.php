@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductDeals extends Model
+class Comment extends Model
 {
     protected $fillable = [
          
-        'completed',         
+        'subject',
         'user_id',
-        'school_id',
-        'athr_id',         
+        'school_id',         
     ];
 
     public function user()
