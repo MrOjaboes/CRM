@@ -8,7 +8,21 @@
     </div>
     </div>
     <div class="row">   
-    <div class="col-lg-6 col-6">
+    <div class="col-lg-4 col-4">
+    <div class="small-box bg-info">
+         <div class="inner">
+         <h3 class="text-center">{{$notes->where('status',0)->count()}}</h3>
+
+           <h6><a href="{{route('affiliate.notes')}}" style="color:white;">Notes From Affiliates</a></h6>
+         </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+    </div>
+
+    <div class="col-lg-4 col-4">
     <div class="small-box" style="background-color:#A1E84F;">
          <div class="inner">
          <h3 class="text-center">{{$affiliates}}</h3>
@@ -21,7 +35,7 @@
          
        </div>
     </div>
-     <div class="col-lg-6 col-6">
+     <div class="col-lg-4 col-4">
        <!-- small box -->
        <div class="small-box" style="background-color:#002343;">
          <div class="inner">
@@ -142,30 +156,11 @@
         //- DONUT CHART -
         //-------------
         // Get context with jQuery - using jQuery's .get() method.
-        var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-        var donutData        = {
-          labels: [
-              'Savings',              
-                
-          ],
-          datasets: [
-            { 
-              data: "{{Auth::user()->wallet->balance}}",
-              backgroundColor : ['#00a65a'],
-            }
-          ]
-        }
-        var donutOptions     = {
-          maintainAspectRatio : false,
-          responsive : true,
-        }
+        
         //Create pie or douhnut chart
         // You can switch between pie and douhnut using the method below.
         var donutChart = new Chart(donutChartCanvas, {
-          type: 'doughnut',
-          data: donutData,
-          options: donutOptions      
-        })
+        
 
         //-------------
         //- PIE CHART -

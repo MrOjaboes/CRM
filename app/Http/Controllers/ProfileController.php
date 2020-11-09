@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Profile;
-use App\Rules\MatchOldPassword;
-use App\Saving;
+use App\Rules\MatchOldPassword; 
 use App\User;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\UserMail;
-use App\Withdrawal;
+use App\Mail\UserMail; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,8 +15,8 @@ class ProfileController extends Controller
 {
     public function show(Profile $profile)
     {
-        $savings = Saving::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
-        return view('profile.index', compact('profile', 'savings'));
+        //$savings = Saving::where('user_id', Auth::id())->orderBy('created_at', 'DESC')->get();
+        return view('profile.index', compact('profile'));
     }
 
     /**

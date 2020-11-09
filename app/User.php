@@ -40,10 +40,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function wallet()
-    {
-        return $this->hasOne(Wallet::class);
-    }
+   
 
     public function notes()
     {
@@ -93,29 +90,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-
-    public function withdrawals()
-    {
-        return $this->hasMany(Withdrawal::class);
-    }
-
-    public function savings()
-    {
-        return $this->hasMany(Saving::class);
-    }
-
-    public function loans()
-    {
-        return $this->hasMany(Loan::class);
-    }
+ 
+  
 
     public function offlinefunds()
     {
         return $this->hasMany(OfflineFund::class);
     }
 
-    public function cancelmembership()
-    {
-        return $this->hasOne(CancelMembership::class);
-    }
+    
 }

@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\NewUserMail;
 use App\Profile;
-use App\Rules\MatchOldPassword;
-use App\Saving;
-use App\Transaction;
+use App\Rules\MatchOldPassword; 
 use App\User;
 use App\Note;
 use App\AllNote;
@@ -47,93 +45,7 @@ class UserController extends Controller
         return view('admin.users.note', compact('user','profile','notes'));
     }
 
-    public function deductwallet(Request $request, $id)
-    {
-        if (Auth::user()->user_type != 1) {
-            abort(401);
-        }
-        $user = User::findOrFail($id);
-
-        $data = $request->all();
-        $initial_balance = $user->wallet->balance;
-        $amount = $data['amount'];
-        $ref = Str::random(10);
-
-        if ($amount > $initial_balance) {
-            return redirect()->back()->with('info', 'User does not have upto ' . $amount . ' in his/her wallet');
-        }
-
-        try {
-            DB::beginTransaction();
-
-            $wallet_balance = $initial_balance - $amount;
-            $user->wallet()->update([
-                'balance' => $wallet_balance
-            ]);
-
-            $transaction = Transaction::create([
-                "reference" => $ref,
-                "payment_type" => 'savings',
-                "amount" => $amount,
-                'description' => 'Admin deducted ' . $user->username . ' with ' . $amount . '',
-                'user_id' => $user->id,
-                'status' =>  'completed'
-            ]);
-
-            DB::commit();
-            return redirect()->back()->with('success', 'User has been debitted ' . $amount . ' successfully');
-        } catch (\Exception $e) {
-
-            DB::rollback();
-            return redirect()->back()->with('warning', 'sorry an error occured');
-        }
-    }
-
-    public function addwallet(Request $request, $id)
-    {
-        if (Auth::user()->user_type != 1) {
-            abort(401);
-        }
-
-        $user = User::findOrFail($id);
-
-        $data = $request->all();
-        $initial_balance = $user->wallet->balance;
-        $amount = $data['amount'];
-        $ref = Str::random(10);
-        try {
-            DB::beginTransaction();
-            $wallet_balance = $initial_balance + $amount;
-
-            $user->wallet()->update([
-                'balance' => $wallet_balance
-            ]);
-
-            $saving = Saving::create([
-                'user_id' => $user->id,
-                'amount' => $amount,
-                'final_amount' => $wallet_balance,
-                'initial_amount' => $initial_balance,
-                'user_id' => Auth::id()
-            ]);
-
-            $transaction = Transaction::create([
-                "reference" => $ref,
-                "payment_type" => 'savings',
-                "amount" => $amount,
-                'description' => 'Admin creditted ' . $user->username . ' with ' . $amount . '',
-                'user_id' => $user->id,
-                'status' =>  'completed'
-                // 'final_balance' => $walletbalance
-            ]);
-
-            DB::commit();
-            return redirect()->back()->with('success', 'User has been creditted ' . $amount . ' successfully');
-        } catch (\Exception $e) {
-            DB::rollback();
-            return redirect()->back()->with('warning', 'sorry an error occured try again');
-        }
-    }
+   
 
     public function edit(Profile $profile)
     {

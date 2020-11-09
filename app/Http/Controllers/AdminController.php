@@ -2,24 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
-use App\CancelMembership;
-use App\Loan;
+use App\Admin; 
 use App\Deals;
 use App\School;
 use App\Product;
-use App\AllNote;
-use App\Mail\AcceptLoan;
-use App\Mail\OfflineUser;
-use App\Mail\PayLoan;
-use App\Mail\RejectLoan;
-use App\OfflineFund;
-use App\Saving;
-use App\Transaction;
-use App\User;
-use App\Wallet;
-use App\Note;
-use App\Withdrawal;
+use App\AllNote; 
+use App\User; 
+use App\Note; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
