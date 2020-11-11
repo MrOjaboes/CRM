@@ -74,9 +74,9 @@
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
                                     @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 3)
+                                    <!-- @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 3)
                                       <a class="dropdown-item" href="{{route('view-user-note', $user->profile)}}">View Note</a>
-                                      @endif
+                                      @endif -->
                                     </div>
                                   </div>
                              </td>

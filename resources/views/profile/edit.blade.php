@@ -9,7 +9,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Profile</h1>
+            <h1>Edit Profile</h1><br>
+            <div class="justify-content-centre">
+                        @if ($profile->user->user_type == 1)
+                        <a href="{{route('admin')}}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Home</a>
+                            @endif
+                            
+                            
+                            </div>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -60,7 +67,7 @@
                                     </div>
                                 </form>
                                 </div>
-          
+                               
           <!-- /.card-header -->
 
           <div class="card-body">        

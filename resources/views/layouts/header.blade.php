@@ -52,18 +52,11 @@
         <a href="{{route('admin')}}" class="nav-link">Create Project</a>
       </li> -->
     </ul>
-    <div class="navbar-custom-menu pull-right">
-        <ul class="nav navbar-nav">
-		  
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a class="control-btn" href="#" data-toggle="control-sidebar"><i class="ti-settings"></i></a>
-          </li>			  
-          <!-- Messages -->
-          
-		  <!-- User Account-->
-              
+    
+        
+		  <!-- Right Links-->
        
+      
   </nav>
   <!-- /.navbar -->
  <!-- Left side column. contains the logo and sidebar -->

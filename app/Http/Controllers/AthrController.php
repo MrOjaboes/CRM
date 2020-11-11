@@ -9,6 +9,45 @@ class AthrController extends Controller
     public function Index()
     {
         $athrs = Athr::orderBy('created_at','DESC')->get();
-       return view('athr.index',compact('athrs'));
+       return view('Athr.index',compact('athrs'));
     }
+    public function Create()
+     {
+         
+        return view('Athr.create');
+     }
+
+     public function store(Request $request)
+     {
+         $request->validate([
+             '' => '',
+         ]);
+       return redirect()->back->with();
+     }
+
+      public function show(Athr $athr)
+     {
+         
+        return view('Athr.details',compact('athr'));
+     }
+      public function edit($athr)
+     {
+        
+        return view('Athr.edit',compact('athr'));
+     }
+
+     public function update(Athr $athr, Request $request)
+     {
+         $request->validate([
+             '' => '',
+         ]);
+       return redirect()->back->with();
+     }
+
+     public function delete(Athr $athr)
+     {
+        $athr->delete();
+        return redirect()->back->with();
+     }
+
 }

@@ -1,45 +1,14 @@
 @extends('layouts.users')
 @section('content')
 <div class="homepage mb-80">
-    <div class="container">
-    <div class="row">   
-    <div class="col-lg-6 col-6">
-    <div class="small-box" style="background-color:#A1E84F;">
-         <div class="inner">
-         <h3 class="text-center">{{$affiliates}} </h3>
-
-           <h6>Registered Affiliates</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-    </div>
-     <div class="col-lg-6 col-6">
-       <!-- small box -->
-       <div class="small-box" style="background-color:#002343;">
-         <div class="inner">
-         <h3 class="text-center text-white">{{$products}}</h3>
-
-           <h6 class="text-white">Products Added</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     </div>
-     </div>
-         
-        <h2 class="text-center" style="color:#cccccc;">SchoolRevo Details</h2>
+    <div class="container">    
      <div class="row">   
-     <div class="col-lg-3 col-3">
+     <div class="col-lg-4 col-4">
      <div class="small-box bg-warning">
          <div class="inner">
-         <h3 class="text-center">{{$schools->count()}}</h3>
+         <h3 class="text-center">{{$products}}</h3>
 
-           <h6>Schools Involved</h6>
+         <h6 ><a href="{{route('products')}}" class="text-white">Products Added</a> </h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -48,23 +17,9 @@
        </div>
      
      </div>
+      
 
-     <div class="col-lg-3 col-3">
-     <div class="small-box bg-info">
-         <div class="inner">
-         <h3 class="text-center"> &#8358; {{$deals}}</h3>
-
-           <h6>Wallet Balance</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     
-     </div>
-
-    <div class="col-lg-3 col-3">
+    <div class="col-lg-4 col-4">
     <div class="small-box" style="background-color:#33E899;">
          <div class="inner">
          <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
@@ -77,7 +32,7 @@
          
        </div>
     </div>
-     <div class="col-lg-3 col-3">
+     <div class="col-lg-4 col-4">
        <!-- small box -->
        <div class="small-box bg-danger">
          <div class="inner">
@@ -93,37 +48,7 @@
      </div>
      </div>
          
-     <h2 class="text-center" style="color:#cccccc;">ATHR Details</h2>
-     <div class="row">   
-
-    <div class="col-lg-6 col-6">
-    <div class="small-box" style="background-color:#33E899;">
-         <div class="inner">
-         <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
-
-           <h6>Open Deals</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-    </div>
-     <div class="col-lg-6 col-6">
-       <!-- small box -->
-       <div class="small-box bg-danger">
-         <div class="inner">
-         <h3 class="text-center">{{$schools->where('completed', 1)->count()}}</h3>
-
-           <h6>Closed Deals</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     </div>
-     </div>
+      
          
 
                             

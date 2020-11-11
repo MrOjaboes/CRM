@@ -4,7 +4,8 @@
     <div class="container">
     <div class="row">
     <div class="col-md-12">
-    <h4 class="card-title text-right"><a href="{{route('affiliate.notes')}}">Notes From Affiliates</a>  <b class="btn btn-sm btn-success">{{$notes->where('status',0)->count()}}</b></h4> <br><br>
+    <h4 class="card-title text-right"><a href="{{route('affiliate.notes')}}" title="Notes from Affiliates"><i class="far fa-envelope fa-2x"></i><span class="badge badge-success">{{$notes->where('status',0)->count()}}</span></a></h4> 
+    <br><br>
     </div>
     </div>
     <div class="row">   
@@ -13,7 +14,7 @@
          <div class="inner">
          <h3 class="text-center">{{$notes->where('status',0)->count()}}</h3>
 
-           <h6><a href="{{route('affiliate.notes')}}" style="color:white;">Notes From Affiliates</a></h6>
+           <h6><a href="{{route('affiliate.notes')}}" title="Notes from Affiliates" style="color:white;">Notes From Affiliates</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -41,7 +42,7 @@
          <div class="inner">
          <h3 class="text-center text-white">{{$products}}</h3>
 
-           <h6 class="text-white">Products Added</h6>
+           <h6 class="text-white"><a href="{{route('admin.products')}}" class="text-white">Products Added</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -51,14 +52,14 @@
      </div>
      </div>
          
-        <h2 class="text-center" style="color:#cccccc;">SchoolRevo Details</h2>
+        
      <div class="row">   
      <div class="col-lg-4 col-4">
      <div class="small-box bg-warning">
          <div class="inner">
          <h3 class="text-center">{{$schoolrevos->count()}}</h3>
 
-           <h6>Schools Involved</h6>
+         <h6 class="text-white"><a href="{{route('admin.schools')}}" class="text-white">Schools Involved</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -97,39 +98,7 @@
      </div>
      </div>
          
-     <h2 class="text-center" style="color:#cccccc;">ATHR Details</h2>
-     <div class="row">   
-
-    <div class="col-lg-6 col-6">
-    <div class="small-box" style="background-color:#33E899;">
-         <div class="inner">
-         <h3 class="text-center">{{$schoolrevos->where('completed', 0)->count()}}</h3>
-
-           <h6>Open Deals</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-    </div>
-     <div class="col-lg-6 col-6">
-       <!-- small box -->
-       <div class="small-box bg-danger">
-         <div class="inner">
-         <h3 class="text-center">{{$schoolrevos->where('completed', 1)->count()}}</h3>
-
-           <h6>Closed Deals</h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     </div>
-     </div>
-         
-
+      
                             
                     </div>
                 </div>

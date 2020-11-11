@@ -15,9 +15,7 @@ class SchoolController extends Controller
    public function Index()
    {
     $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
-   $schools = School::orderBy('created_at','desc')->get();
-  //  $affiliates = User::all()->count();
-  //  $products = Product::all()->count();
+   $schools = School::where('user_id',auth()->user()->id)->orderBy('created_at','desc')->get();   
     $payments = Deals::where('user_id',auth()->user()->id)->get();      
      return view('schools.schools',compact('schools','deals','payments'));
    }
@@ -57,7 +55,7 @@ class SchoolController extends Controller
       $deals = Deals::where('school_id',$school->id)->get();
       return view('schools.details',compact('school','deals'));
     }
-
+//schoolNotes Starts here
     public function view_note(SchoolNote $school_notes,School $school)
     {
       $school_notes = SchoolNote::where('school_id',$school->id)->orderBy('created_at','DESC')->get();
@@ -75,14 +73,12 @@ class SchoolController extends Controller
     }
 
     public function school_note(\App\School $school){
-      // $activities = Activity_log::where('project_id',$project)->get();
       
        return view('schools.note',compact('school'));
    }
 
    public function show_school_note(School $school){
-    // $school = School::find($school);
-    $school_notes = SchoolNote::where('school_id',$school->id)->orderBy('created_at','DESC')->get();
+      $school_notes = SchoolNote::where('school_id',$school->id)->orderBy('created_at','DESC')->get();
      return view('schoolNotes.index',compact('school_notes'));
  }
  public function show_school_note_details(SchoolNote $school){
@@ -227,13 +223,12 @@ public function Delete_note(Request $request, SchoolNote $schoolnote)
     ]);
     $data = $request->all();         
     $school->update($data);
-    return redirect()->back()->with('success', 'School updated succesfully');
-      
+    return redirect()->back()->with('success', 'School updated succesfully');      
     }
+
     public function Delete(Request $request, School $school)
     {
         $school->delete();
-
         return redirect()->back()->with('success', 'School Deleted succesfully');
     }
 }

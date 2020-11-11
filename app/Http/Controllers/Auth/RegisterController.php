@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\NewUserMail;
 use App\Providers\RouteServiceProvider;
-use App\User;
-use App\Wallet;
+use App\User; 
 use App\Profile;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
@@ -102,9 +101,7 @@ class RegisterController extends Controller
                 // $data['password'] = Hash::make($data['password']);
                 // $user = User::create($data);
 
-                Wallet::create([
-                    'user_id' => $user->id
-                ]);
+                 
 
                 Profile::create([
                     'user_id' => $user->id,

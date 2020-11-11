@@ -132,9 +132,7 @@
              </tbody>
              </table>
              @endif
-            <!-- <div class="form-group col-12">
-                <a type="button" class="btn btn-warning pl-5 pr-5" href="{{route('schools')}}">Schools</a>
-            </div> -->
+             <a href="{{route('admin.schools')}}" type="button" class="btn btn-warning"><i class="fas fa-arrow-left"></i> Back</a>
        
            
             </div>

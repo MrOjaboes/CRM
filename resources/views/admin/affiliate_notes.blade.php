@@ -7,7 +7,7 @@
             <div class="col-md-10">
                 <div class="card">
                     <div class="card-header border-0 pb-0">
-                        <h4 class="card-title">Recent notes From Affiliates <span class="badge badge-warning">{{$notes->where('status' == 0)->count()}}</span></h4>
+                        <h4 class="card-title">Recent notes From Affiliates <span class="badge badge-warning">{{$notes->where('status',0)->count()}}</span></h4>
             
                     </div>
 

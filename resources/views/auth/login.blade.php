@@ -36,9 +36,9 @@
 			<div class="login100-more" style="background-image: url('/front/images/bg5.jpeg');">
 			<br><br><br><br><br><br><br><br><br>
 				<h1 class="text-justify text-white pt-5" style="margin-left: 10%;">Welcome to iCREDENCE Affiliate Portal</h1>
-		<p class="text-justify text-white" style="margin-left: 15%;font-size: large;">		
+		<p class="text-justify text-white" style="margin-left: 10%;font-size: large;">		
 A new standard in performance and pay programme. <br>
-Refer - Register - Reward
+Refer- Register- Reward
 		</p>
 			</div>
 
