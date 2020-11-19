@@ -57,14 +57,13 @@
                       @forelse ($users as $user)
                       <tbody>
                         <tr>
-                          <td>{{$user->profile->first_name ?? '-'}}</td>
-                          <td>{{$user->profile->last_name ?? '-'}}</td>
+                          <td>{{$user->profile->full_name ?? '-'}}</td>
+                          <td>{{$user->profile->full_name ?? '-'}}</td>
                             <td>{{$user->username ?? '-'}}</td>
                             <td>{{$user->profile->address ?? '-'}}</td>
                             <td>{{$user->profile->phone ?? '-'}}</td>
                              <td>{{$user->email ?? '-'}}</td>
-                             <td>${{$user->wallet->balance ?? '-'}}</td>
-                             <td>
+                              <td>
                                @if ($user->user_type == 1)
                                    Admin
                                @endif
@@ -94,9 +93,7 @@
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
                                     @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 3)
-                                      <a class="dropdown-item" href="{{route('add-deduct', $user->id)}}">Fund/Deduct</a>
-                                      @endif
+                                    
                                     </div>
                                   </div>
                              </td>

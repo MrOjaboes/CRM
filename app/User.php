@@ -50,6 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Deals::class);
     }
+    public function affiliateHistories()
+    {
+        return $this->hasMany(AffiliateHistory::class);
+    }
     public function allnotes()
     {
         return $this->hasMany(AllNote::class);

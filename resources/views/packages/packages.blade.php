@@ -16,9 +16,13 @@
                 <span class="alert alert-success">{{session()->get('message')}}</span>
                  
                 @endif
+                    
+                    @if(Auth::check() AND Auth::user()->user_type == 1)
                     <br><br>
                     <h5 class="card-title"><a class="btn btn-secondary" href="{{route('create-package')}}"><i class="fas fa-plus"></i> New Package</a></h5>
-                        <br><br>
+                    <br><br>
+                        @endif
+                        
                         <div class="transaction-table">
                             <div class="table-responsive">
                               <table class="table mb-0 table-responsive-sm" style="height:400px;overflow-y:scroll;">
@@ -26,7 +30,9 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Amount</th>
                                     <th scope="col">Date Added</th>
+                                    @if(Auth::check() AND Auth::user()->user_type == 1)
                                     <th scope="col">Action</th>
+                                    @endif
                                 </thead>
                                 <tbody>
                                 @foreach($packages as $package)
@@ -34,27 +40,27 @@
                                     <td>{{$package->name}}</td>
                                     <td>&#8358; {{$package->amount}}</td>
                                     <td>{{ \Carbon\Carbon::parse($package->created_at)->format('d/m/Y')}}</td>
+                                    @if(Auth::check() AND Auth::user()->user_type == 1)
+                                    
                                     <td>
                                 <div class="dropdown">
                                     <button style="background-color:#3A3A80;color:white;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      @if(Auth::check() AND Auth::user()->user_type == 1)
-                                    
+                                     
                                     <a class="dropdown-item" href="{{route('edit-package', $package->id)}}">Edit Package</a>
                                     <form action="{{route('delete-package', $package->id)}}" method="POST">
                                       @csrf
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
-                                    @endif
-                                    @if(Auth::check() AND Auth::user()->user_type == 1)
-                                      
-                                      @endif
+                                    
                                     </div>
                                   </div>
                              </td>
+                             @endif
+                                    
                                   </tr>
                                   @endforeach
                                 </tbody>

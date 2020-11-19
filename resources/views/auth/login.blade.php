@@ -44,10 +44,12 @@ Refer- Register- Reward
 
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
                 <div>
-				@if(session()->has('message'))
-                <span class="alert alert-success">{{session()->get('message')}}</span>
-                 
-                @endif
+				@if ($message = Session::get('warning'))
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong class="text-danger">warning!</strong> {{session('warning')}}
+      </div>
+      @endif
                     <br><br>
                 </div>
 				<form class="login100-form validate-form" role="form" method="POST" action="{{route('login') }}">

@@ -14,10 +14,12 @@ class SchoolController extends Controller
 {
    public function Index()
    {
-    $deals = Deals::where('user_id',auth()->user()->id)->sum('balance');
+    $balance = Deals::where('user_id',auth()->user()->id)->sum('balance');
+    $total_deals = Deals::where('user_id',auth()->user()->id)->sum('package_amount');
+    $total = $total_deals - $balance;
    $schools = School::where('user_id',auth()->user()->id)->orderBy('created_at','desc')->get();   
     $payments = Deals::where('user_id',auth()->user()->id)->get();      
-     return view('schools.schools',compact('schools','deals','payments'));
+     return view('schools.schools',compact('schools','total','payments'));
    }
 
     public function Create()

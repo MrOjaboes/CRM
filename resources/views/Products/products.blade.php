@@ -13,16 +13,20 @@
                     </div>
 
                     <div class="card-body">
+                    @if(Auth::check() AND Auth::user()->user_type == 1)
                     <br>
                     <h5 class="card-title"><a class="btn btn-secondary" href="{{route('create-product')}}"><i class="fas fa-plus"></i> New Product</a></h5>
                         <br><br>
+                        @endif
                         <div class="transaction-table">
                             <div class="table-responsive">
                               <table class="table mb-0 table-responsive-sm">
                                 <thead>                                     
                                     <th scope="col">Title</th>
                                     <th scope="col">Date</th>
+                                    @if(Auth::check() AND Auth::user()->user_type == 1)
                                     <th scope="col">Action</th>
+                                    @endif
                                 </thead>
                                 <tbody>
                                 @foreach($products as $product)
@@ -37,13 +41,14 @@
                                       
                                   </td>
                                     <td>{{ \Carbon\Carbon::parse($product->created_at)->format('d/m/Y')}}</td>
+                                    @if(Auth::check() AND Auth::user()->user_type == 1)
                                     <td>
                                 <div class="dropdown">
                                     <button style="background-color:#3A3A80;color:white;" class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      @if(Auth::check() AND Auth::user()->user_type == 1)
+                                     
                                     <!-- <a class="dropdown-item btn btn-info" href="{{route('view-note', $product->id)}}">Details</a> -->
                                     <a class="dropdown-item" href="{{route('edit-product', $product->id)}}">Edit Product</a>
                                     <form action="{{route('delete-product', $product->id)}}" method="POST">
@@ -51,11 +56,12 @@
                                       @method('DELETE')
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
-                                    @endif
+                                   
                                     
                                     </div>
                                   </div>
                              </td>
+                             @endif
                                   </tr>
                                   @endforeach
                                 </tbody>

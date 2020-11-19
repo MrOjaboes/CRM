@@ -11,7 +11,7 @@
             <div class="small-box bg-default">
          <div class="inner">
          
-           <h3 class="text-center">&#8358; {{$deals}}</h3>
+           <h3 class="text-center">&#8358; {{$total}}</h3>
 
            <b>Balance</b>
          </div>        

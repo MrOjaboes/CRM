@@ -40,7 +40,7 @@
      </div>
      <div class="col-lg-3 col-6"></div>
      <!-- ./col -->
-   </div>
+   </div>-
 
    
       

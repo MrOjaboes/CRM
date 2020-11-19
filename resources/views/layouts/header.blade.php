@@ -122,13 +122,14 @@
         <p style="color:white;"> Products</p>
       </a>
     </li>  
+    @if(Auth::check() AND Auth::user()->user_type == 1)
     <li class="nav-item">
         <a href="{{route('affiliate.notes')}}" class="nav-link">
         <i class="fas fa-file text-white"></i>
         <p style="color:white;"> Notes</p>
       </a>
     </li>       
-                                   
+         @endif                          
           <li class="nav-item">
               <a class="dropdown-item nav-link" href="{{ route('logout') }}"
                  onclick="event.preventDefault();

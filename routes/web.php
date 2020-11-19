@@ -33,21 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('athr/index', 'AthrController@index')->name('athrs');
     Route::get('athrs/index', 'AthrController@athrs')->name('admin.athrs')->middleware('is_admin');
     Route::get('athr/create', 'AthrController@create')->name('create-athr');
-    Route::post('athr/create', 'AthrtController@store')->name('create-athr');
+    Route::post('athr/create', 'AthrController@store')->name('create-athr');
     Route::get('athr/view/{athr}', 'AthrController@show')->name('view-athr');
     Route::get('athr/edit/{athr}', 'AthrController@edit')->name('edit-athr');
     Route::post('athr/edit/{athr}', 'AthrController@update')->name('update-athr');
     Route::DELETE('athr/delete/{athr}', 'AthrController@delete')->name('delete-athr');
-
-   //AthrPackage Creation
-   Route::get('athrpackage/index', 'AthrPackageController@index')->name('athrpackages');
-   Route::get('athrpackages/index', 'AthrPackageController@athrs')->name('admin.athrpackages')->middleware('is_admin');
-   Route::get('athrpackage/create', 'AthrPackageController@create')->name('create-athrpackage');
-   Route::post('athrpackage/create', 'AthrPackagetController@store')->name('create-athrpackage');
-   Route::get('athrpackage/view/{athrpackage}', 'AthrPackageController@show')->name('view-athrpackage');
-   Route::get('athrpackage/edit/{athrpackage}', 'AthrPackageController@edit')->name('edit-athrpackage');
-   Route::post('athrpackage/edit/{athrpackage}', 'AthrPackageController@update')->name('update-athrpackage');
-   Route::DELETE('athrpackage/delete/{athrpackage}', 'AthrPackageController@delete')->name('delete-athrpackage');
 
 
 
@@ -112,7 +102,7 @@ Route::DELETE('product/delete/{product}', 'ProductController@delete')->name('del
 
 
 
-//SchoolPackage Creation
+//Package Creation
 Route::PUT('affiliate/note/{note}', 'AdminController@mark_note')->name('mark-note')->middleware('is_admin');
 Route::PUT('affiliate/payment/{school}', 'AdminController@payment')->name('pay-affiliate')->middleware('is_admin');
 Route::get('school/details/{school}', 'AdminController@show')->name('school-details')->middleware('is_admin');

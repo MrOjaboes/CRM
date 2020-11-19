@@ -1,30 +1,15 @@
 @extends('layouts.users')
 @section('content')
 <div class="homepage mb-80">
-    <div class="container">    
-     <div class="row">   
-     <div class="col-lg-4 col-4">
-     <div class="small-box bg-warning">
+    <div class="container">
+    <div class="row">      
+    <div class="col-lg-2 col-2"></div>
+    <div class="col-lg-3 col-3">
+    <div class="small-box bg-warning">
          <div class="inner">
          <h3 class="text-center">{{$products}}</h3>
 
-         <h6 ><a href="{{route('products')}}" class="text-white">Products Added</a> </h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     
-     </div>
-      
-
-    <div class="col-lg-4 col-4">
-    <div class="small-box" style="background-color:#33E899;">
-         <div class="inner">
-         <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
-
-           <h6>Open Deals</h6>
+           <h6><a href="{{route('products')}}" class="text-dark">Products Available</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -32,20 +17,36 @@
          
        </div>
     </div>
-     <div class="col-lg-4 col-4">
-       <!-- small box -->
-       <div class="small-box bg-danger">
-         <div class="inner">
-         <h3 class="text-center">{{$schools->where('completed', 1)->count()}}</h3>
 
-           <h6>Closed Deals</h6>
-         </div>
+    <div class="col-lg-3 col-3">
+       <!-- small box -->
+       <div class="small-box" style="background-color:#33E899;">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->where('completed', 0)->count()}}</h3>
+
+         <h6><a href="{{route('schools')}}" class="text-dark">Open Deals</a></h6>
+          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
          </div>
          
        </div>
      </div>
+     <div class="col-lg-3 col-3">
+       <!-- small box -->
+       <div class="small-box bg-danger">
+         <div class="inner">
+         <h3 class="text-center">{{$schools->where('completed', 1)->count()}}</h3>
+
+         <h6><a href="{{route('schools')}}" class="text-dark">Closed Deals</a></h6>
+          </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     <div class="col-lg-1 col-1"></div>
      </div>
          
       

@@ -64,7 +64,7 @@ class AdminController extends Controller
     ]);
      
     }     
-    return redirect()->back()->with('message','Payment Made Successfully!');
+    return redirect()->back()->with('success','Payment Made Successfully!');
     }
 
     public function affiliate_notes()

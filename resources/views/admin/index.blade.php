@@ -2,14 +2,28 @@
 @section('content')
 <div class="homepage mb-80">
     <div class="container">
-    <div class="row">
-    <div class="col-md-12">
-    <h4 class="card-title text-right"><a href="{{route('affiliate.notes')}}" title="Notes from Affiliates"><i class="far fa-envelope fa-2x"></i><span class="badge badge-success">{{$notes->where('status',0)->count()}}</span></a></h4> 
-    <br><br>
+    @if(Auth::check() AND Auth::user()->user_type == 1)
+           
+    <div class="row">      
+    <div class="col-lg-2 col-2"></div>
+    <div class="col-lg-3 col-3">
+    <h3 class="card-title text-right"><a href="{{route('affiliate.notes')}}" title="Notes from Affiliates"><i class="far fa-envelope fa-2x"></i><span class="badge badge-success">{{$notes->where('status',0)->count()}}</span></a></h3> 
+  <br><br>
     </div>
-    </div>
-    <div class="row">   
-    <div class="col-lg-4 col-4">
+
+    <div class="col-lg-3 col-3">       
+     </div>
+     <div class="col-lg-3 col-3">       
+     </div>
+     <div class="col-lg-1 col-1"></div>
+     </div>
+         @endif  
+   
+         
+
+    <div class="row">      
+    <div class="col-lg-2 col-2"></div>
+    <div class="col-lg-3 col-3">
     <div class="small-box bg-info">
          <div class="inner">
          <h3 class="text-center">{{$notes->where('status',0)->count()}}</h3>
@@ -23,58 +37,45 @@
        </div>
     </div>
 
-    <div class="col-lg-4 col-4">
+    <div class="col-lg-3 col-3">
     <div class="small-box" style="background-color:#A1E84F;">
          <div class="inner">
          <h3 class="text-center">{{$affiliates}}</h3>
 
-           <h6>Registered Affiliates</h6>
+         <h6><a href="{{route('users')}}" class="text-dark">Registered Affiliates</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
          </div>
          
        </div>
-    </div>
-     <div class="col-lg-4 col-4">
+     </div>
+     <div class="col-lg-3 col-3">
        <!-- small box -->
        <div class="small-box" style="background-color:#002343;">
          <div class="inner">
          <h3 class="text-center text-white">{{$products}}</h3>
 
-           <h6 class="text-white"><a href="{{route('admin.products')}}" class="text-white">Products Added</a></h6>
-         </div>
+         <h6><a href="{{route('admin.products')}}" class="text-white">Closed Deals</a></h6>
+          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
          </div>
          
        </div>
      </div>
+     <div class="col-lg-1 col-1"></div>
      </div>
-         
-        
-     <div class="row">   
-     <div class="col-lg-4 col-4">
-     <div class="small-box bg-warning">
+         <br>
+
+         <div class="row">      
+    <div class="col-lg-2 col-2"></div>
+    <div class="col-lg-3 col-3">
+    <div class="small-box bg-warning">
          <div class="inner">
          <h3 class="text-center">{{$schoolrevos->count()}}</h3>
 
-         <h6 class="text-white"><a href="{{route('admin.schools')}}" class="text-white">Schools Involved</a></h6>
-         </div>
-         <div class="icon">
-           <i class="ion ion-bag"></i>
-         </div>
-         
-       </div>
-     
-     </div>
-
-    <div class="col-lg-4 col-4">
-    <div class="small-box bg-danger">
-         <div class="inner">
-         <h3 class="text-center">{{$schoolrevos->where('completed', 1)->count()}}</h3>
-
-           <h6>Closed Deals</h6>
+           <h6><a href="{{route('admin.schools')}}" class="text-dark">Schools Involved</a></h6>
          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
@@ -82,23 +83,41 @@
          
        </div>
     </div>
-     <div class="col-lg-4 col-4">
+
+    <div class="col-lg-3 col-3">
        <!-- small box -->
        <div class="small-box" style="background-color:#33E899;">
          <div class="inner">
          <h3 class="text-center">{{$schoolrevos->where('completed', 0)->count()}}</h3>
 
-           <h6>Open Deals</h6>
-         </div>
+         <h6><a href="{{route('admin.schools')}}" class="text-dark">Open Deals</a></h6>
+          </div>
          <div class="icon">
            <i class="ion ion-bag"></i>
          </div>
          
        </div>
      </div>
+     <div class="col-lg-3 col-3">
+       <!-- small box -->
+       <div class="small-box bg-danger">
+         <div class="inner">
+         <h3 class="text-center">{{$schoolrevos->where('completed', 0)->count()}}</h3>
+
+         <h6><a href="{{route('admin.schools')}}" class="text-dark">Closed Deals</a></h6>
+          </div>
+         <div class="icon">
+           <i class="ion ion-bag"></i>
+         </div>
+         
+       </div>
+     </div>
+     <div class="col-lg-1 col-1"></div>
      </div>
          
       
+         
+
                             
                     </div>
                 </div>
@@ -125,10 +144,6 @@
         //- DONUT CHART -
         //-------------
         // Get context with jQuery - using jQuery's .get() method.
-        
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        var donutChart = new Chart(donutChartCanvas, {
         
 
         //-------------

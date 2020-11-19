@@ -50,7 +50,7 @@
                         
                         </tr>
                       </thead>
-                      @forelse ($users as $user)
+                      @foreach($users as $user)
                       <tbody>
                         <tr>
                           <td>{{$user->profile->full_name ?? '-'}}</td>                           
@@ -66,7 +66,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                       @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 2)
-                                    <a class="dropdown-item btn btn-info" href="{{route('edit-user', $user->profile)}}">Details</a>
+                                    <a class="dropdown-item btn btn-info" href="{{route('edit-user', $user->profile)}}" title="Affiliate's Details">Details</a>
                                     <a class="dropdown-item btn btn-secondary" href="{{route('mail-user', $user->profile)}}">Send Mail</a>
                                     <form action="{{route('admin-delete', $user->id)}}" method="POST">
                                       @csrf
@@ -74,17 +74,16 @@
                                       <button type="submit" class="btn btn-default">Delete</button>
                                     </form>
                                     @endif
-                                    <!-- @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 3)
-                                      <a class="dropdown-item" href="{{route('view-user-note', $user->profile)}}">View Note</a>
-                                      @endif -->
+                                    @if(Auth::check() AND Auth::user()->user_type == 1 || Auth::user()->user_type == 3)
+                                      <!--<a class="dropdown-item" href="{{route('view-user-note', $user->profile)}}">View Note</a>-->
+                                      @endif
                                     </div>
                                   </div>
                              </td>
                         </tr>
                       </tbody>
-                      @empty
-                      No User!
-                      @endforelse  
+                       
+                      @endforeach 
                       </table>
                       </div>
         </div>
